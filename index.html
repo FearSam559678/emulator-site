@@ -5,15 +5,68 @@
   <meta charset="UTF-8">
   <title>EmulatorJS - Upload Your Own ROM</title>
   <style>
-    body { background: #111; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
-    iframe { border: none; width: 800px; height: 600px; margin-top: 20px; }
+    body {
+      background: #0f0f0f;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    header {
+      margin-bottom: 30px;
+    }
+    header img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    }
+    h1 {
+      margin-top: 10px;
+      font-size: 32px;
+    }
+    p {
+      font-size: 18px;
+      color: #ccc;
+    }
+    .upload-btn {
+      background-color: #2ecc71;
+      border: none;
+      color: white;
+      padding: 14px 28px;
+      text-align: center;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .upload-btn:hover {
+      background-color: #27ae60;
+    }
+    #romInput {
+      display: none;
+    }
+    iframe {
+      border: none;
+      width: 800px;
+      height: 600px;
+      margin-top: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
   </style>
 </head>
 <body>
-  <h1>Upload Your ROM</h1>
-  <p>Select a ROM file below to start playing:</p>
+  <header>
+    <img src="logo.jpg" alt="Logo" />
+    <h1>Play Your Own Game</h1>
+    <p>Choose a ROM file to load it instantly in the emulator below.</p>
+  </header>
+
+  <label for="romInput" class="upload-btn">Select ROM</label>
   <input type="file" id="romInput" />
-  <div id="game" style="margin-top: 20px;"></div>
+
+  <div id="game"></div>
 
   <script src="loader.js"></script>
 </body>
