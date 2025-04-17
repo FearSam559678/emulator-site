@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
+
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>EmulatorJS - Upload Your Own ROM</title>
-  <style>
+<meta charset="utf-8"/>
+<title>EmulatorJS - Upload Your Own ROM</title>
+<style>
     body {
       background: #0f0f0f;
       color: #f0f0f0;
@@ -66,18 +67,37 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.jpg" alt="Logo" />
-    <h1>Play Your Own Game</h1>
-    <p>Choose a ROM file to load it instantly in the emulator below.</p>
-  </header>
+<header>
+<img alt="Logo" src="logo.jpg"/>
+<h1>Play Your Own Game</h1>
+<p>Choose a ROM file to load it instantly in the emulator below.</p>
+</header>
+<label class="upload-btn" for="romInput">Select ROM</label>
+<a class="rom-btn" href="https://drive.google.com/drive/folders/12QY2CQg05KYcTRG220COyOXoUnNPR8ps" target="_blank">Download GBA ROM’s</a>
+<input id="romInput" type="file"/>
+<div id="game"></div>
+<script src="loader.js"></script>
+<script>
+document.getElementById('romInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-  <label for="romInput" class="upload-btn">Select ROM</label>
-  <a href="https://drive.google.com/drive/folders/12QY2CQg05KYcTRG220COyOXoUnNPR8ps" target="_blank" class="rom-btn">GBA ROMs for the emulator</a>
-  <input type="file" id="romInput" />
-
-  <div id="game"></div>
-
-  <script src="loader.js"></script>
-</body>
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const romData = e.target.result;
+        EJS_player = "#game";
+        EJS_core = "gba";
+        EJS_startOnLoaded = true;
+        EJS_hideBrowserBar = true;
+        EJS_gameData = romData;
+        new EJS(EJS_player, {
+            gameUrl: romData,
+            core: EJS_core,
+            startOnLoaded: true,
+            hideBrowserBar: true
+        });
+    };
+    reader.readAsArrayBuffer(file);
+});
+</script></body>
 </html>
