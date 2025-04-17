@@ -74,8 +74,8 @@
 </header>
 <label class="upload-btn" for="romInput">Select ROM</label>
 <a class="rom-btn" href="https://drive.google.com/drive/folders/12QY2CQg05KYcTRG220COyOXoUnNPR8ps" target="_blank">Download GBA ROM’s</a>
-<input id="romInput" type="file"/>
-<div id="game"></div>
+
+
 <script src="loader.js"></script>
 <script>
 document.getElementById('romInput').addEventListener('change', function (event) {
@@ -99,5 +99,28 @@ document.getElementById('romInput').addEventListener('change', function (event) 
     };
     reader.readAsArrayBuffer(file);
 });
-</script></body>
+</script>
+<div id="game" style="width:100%; height:480px;"></div>
+<input id="romInput" type="file"/>
+<script>
+document.getElementById('romInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const blob = new Blob([e.target.result]);
+        const url = URL.createObjectURL(blob);
+
+        EJS_player = "#game";
+        EJS_core = "gba";
+        EJS_gameUrl = url;
+        EJS_startOnLoaded = true;
+        EJS_hideBrowserBar = false;
+        new EJS(EJS_player);
+    };
+    reader.readAsArrayBuffer(file);
+});
+</script>
+</body>
 </html>
