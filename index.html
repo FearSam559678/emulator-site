@@ -29,7 +29,9 @@
       font-size: 18px;
       color: #ccc;
     }
-    .upload-btn {
+    .upload-btn, .rom-btn {
+      display: inline-block;
+      margin: 10px;
       background-color: #2ecc71;
       border: none;
       color: white;
@@ -39,9 +41,16 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s;
+      text-decoration: none;
     }
     .upload-btn:hover {
       background-color: #27ae60;
+    }
+    .rom-btn {
+      background-color: #3498db;
+    }
+    .rom-btn:hover {
+      background-color: #2980b9;
     }
     #romInput {
       display: none;
@@ -64,6 +73,7 @@
   </header>
 
   <label for="romInput" class="upload-btn">Select ROM</label>
+  <a href="https://drive.google.com/drive/folders/12QY2CQg05KYcTRG220COyOXoUnNPR8ps" target="_blank" class="rom-btn">GBA ROMs for the emulator</a>
   <input type="file" id="romInput" />
 
   <div id="game"></div>
